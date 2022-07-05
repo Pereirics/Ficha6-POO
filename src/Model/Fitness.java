@@ -1,4 +1,4 @@
-import jdk.jshell.execution.Util;
+package Model;
 
 import java.util.*;
 
@@ -187,12 +187,12 @@ public class Fitness {
     }
 
     /* NÃO CONSEGUI FAZER ESTA
-    public Map<String, List<Utilizador>> podiumPorActiv() {
-        Map<String, List<Utilizador>> res = new HashMap<>();
-        for (Utilizador utilizador: this.utilizadores.values()) {
-            for (Actividade actividade: utilizador.getActividadesRealizadas()) {
+    public Map<String, List<Model.Utilizador>> podiumPorActiv() {
+        Map<String, List<Model.Utilizador>> res = new HashMap<>();
+        for (Model.Utilizador utilizador: this.utilizadores.values()) {
+            for (Model.Actividade actividade: utilizador.getActividadesRealizadas()) {
                 if (!res.containsKey(actividade.getCodigo())) {
-                    List<Utilizador> lista = new ArrayList<>();
+                    List<Model.Utilizador> lista = new ArrayList<>();
                     lista.add(utilizador);
                     res.put(actividade.getCodigo(), lista);
                 }
@@ -202,8 +202,8 @@ public class Fitness {
                     }
                     else {
                         double valor = actividade.calculaValorCaloricoDispendido(utilizador);
-                        for (List<Utilizador> listas: res.values()) {
-                            for (Utilizador utilizador1: listas) {
+                        for (List<Model.Utilizador> listas: res.values()) {
+                            for (Model.Utilizador utilizador1: listas) {
                                break;
                             }
                         }
@@ -213,12 +213,14 @@ public class Fitness {
         }
     }
     */
-
-
+    // Não percebi o que é suposto fazer
+    public List<FazMetros> daoPontos() {
+        return new ArrayList<>();
+    }
 
     @Override
     public String toString() {
-        return "Fitness{" +
+        return "Model.Fitness{" +
                 "utilizadores=" + utilizadores +
                 '}';
     }

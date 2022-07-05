@@ -1,8 +1,9 @@
+package Model;
+
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Objects;
 
-public class Canoagem extends Actividade {
+public class Canoagem extends Actividade implements FazMetros {
 
     // Variáveis de instância
     private String embarcacao;
@@ -10,6 +11,7 @@ public class Canoagem extends Actividade {
     private String direcaoVento;
     private double distanciaPercorrida;
     private Integer numeroVoltas;
+    private double valorMetro = 0;
 
     // Construtor por omissão
     public Canoagem() {
@@ -85,7 +87,7 @@ public class Canoagem extends Actividade {
 
     @Override
     public String toString() {
-        return "Canoagem{" +
+        return "Model.Canoagem{" +
                 "embarcacao='" + embarcacao + '\'' +
                 ", velocidadeVento=" + velocidadeVento +
                 ", direcaoVento='" + direcaoVento + '\'' +
@@ -109,5 +111,27 @@ public class Canoagem extends Actividade {
 
     public Canoagem clone() {
         return new Canoagem(this);
+    }
+
+    @Override
+    public double getValorMetro() {
+        return valorMetro;
+    }
+
+    public void setValorMetro(double valorMetro) {
+        this.valorMetro = valorMetro;
+    }
+
+    @Override
+    public double totalPontosActividade(Fitness f, String codActividade) {
+        double total = 0;
+        for (Utilizador utilizador: f.getUtilizadores().values()) {
+            for (Actividade actividade: utilizador.getActividadesRealizadas()) {
+                if (actividade.getCodigo().equals(codActividade)) {
+                    total += this.getValorMetro() * ((Canoagem)actividade).getDistanciaPercorrida() * 1.5 * ((Canoagem) actividade).getVelocidadeVento();
+                }
+            }
+        }
+        return total;
     }
 }

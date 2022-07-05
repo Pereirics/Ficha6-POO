@@ -1,3 +1,5 @@
+package Model;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -141,7 +143,7 @@ public class Utilizador {
 
     @Override
     public String toString() {
-        return "Utilizador{" +
+        return "Model.Utilizador{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", nome='" + nome + '\'' +

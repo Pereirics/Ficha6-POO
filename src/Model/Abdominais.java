@@ -1,3 +1,5 @@
+package Model;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -48,7 +50,7 @@ public class Abdominais extends Actividade {
 
     @Override
     public String toString() {
-        return "Abdominais{" +
+        return "Model.Abdominais{" +
                 "tipoAbdominal='" + tipoAbdominal + '\'' +
                 ", numeroRepeticoes=" + numeroRepeticoes +
                 '}';

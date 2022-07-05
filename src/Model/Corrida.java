@@ -1,13 +1,18 @@
+package Model;
+
 import java.time.LocalDate;
-import java.time.Period;
+import java.util.Map;
 import java.util.Objects;
 
-public class Corrida extends Actividade {
+
+
+public class Corrida extends Actividade implements FazMetros{
 
     // Variáveis de instância
     private double distanciaPercorrida;
     private double altimetriaGanha;
     private String percurso;
+    private double valorMetro = 0;
 
     // Construtor por omissão
     public Corrida() {
@@ -32,6 +37,28 @@ public class Corrida extends Actividade {
         this.distanciaPercorrida = c.getDistanciaPercorrida();
         this.altimetriaGanha = c.getAltimetriaGanha();
         this.percurso = c.getPercurso();
+    }
+
+    @Override
+    public double getValorMetro() {
+        return valorMetro;
+    }
+
+    public void setValorMetro(double valorMetro) {
+        this.valorMetro = valorMetro;
+    }
+
+    @Override
+    public double totalPontosActividade(Fitness f, String codActividade) {
+        double total = 0;
+        for (Utilizador utilizador: f.getUtilizadores().values()) {
+            for (Actividade actividade: utilizador.getActividadesRealizadas()) {
+                if (actividade.getCodigo().equals(codActividade)) {
+                    total += this.getValorMetro() * ((Corrida)actividade).getDistanciaPercorrida();
+                }
+            }
+        }
+        return total;
     }
 
     // Métodos de instância
@@ -74,7 +101,7 @@ public class Corrida extends Actividade {
 
     @Override
     public String toString() {
-        return "Corrida{" +
+        return "Model.Corrida{" +
                 "distanciaPercorrida=" + distanciaPercorrida +
                 ", altimetriaGanha=" + altimetriaGanha +
                 ", percurso='" + percurso + '\'' +

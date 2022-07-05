@@ -1,3 +1,5 @@
+package Model;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
@@ -79,7 +81,7 @@ public class Actividade {
     }
     @Override
     public String toString() {
-        return "Actividade{" +
+        return "Model.Actividade{" +
                 "codigo='" + codigo + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", data='" + data + '\'' +
