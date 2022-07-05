@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Abdominais extends Actividade {
@@ -9,12 +10,13 @@ public class Abdominais extends Actividade {
     // Construtor por omissão
     public Abdominais() {
         super();
+        this.setCodigo("2");
         this.tipoAbdominal = "";
         this.numeroRepeticoes = 0;
     }
 
     // Construtor parametrizado
-    public Abdominais(String codigo, String descricao, String data, Integer duracaoMinutos, String tipoAbdominal, Integer numeroRepeticoes) {
+    public Abdominais(String codigo, String descricao, LocalDate data, Integer duracaoMinutos, String tipoAbdominal, Integer numeroRepeticoes) {
         super(codigo, descricao, data, duracaoMinutos);
         this.tipoAbdominal = tipoAbdominal;
         this.numeroRepeticoes = numeroRepeticoes;

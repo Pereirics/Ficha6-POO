@@ -14,6 +14,7 @@ public class Canoagem extends Actividade {
     // Construtor por omissão
     public Canoagem() {
         super();
+        this.setCodigo("3");
         this.embarcacao = "";
         this.velocidadeVento = 0;
         this.direcaoVento = "";
@@ -22,7 +23,7 @@ public class Canoagem extends Actividade {
     }
 
     // Construtor parametrizado
-    public Canoagem(String codigo, String descricao, String data, Integer duracaoMinutos, String embarcacao, double velocidadeVento, String direcaoVento, double distanciaPercorrida, Integer numeroVoltas) {
+    public Canoagem(String codigo, String descricao, LocalDate data, Integer duracaoMinutos, String embarcacao, double velocidadeVento, String direcaoVento, double distanciaPercorrida, Integer numeroVoltas) {
         super(codigo, descricao, data, duracaoMinutos);
         this.embarcacao = embarcacao;
         this.velocidadeVento = velocidadeVento;

@@ -12,13 +12,14 @@ public class Corrida extends Actividade {
     // Construtor por omissão
     public Corrida() {
         super();
+        this.setCodigo("1");
         this.distanciaPercorrida = 0;
         this.altimetriaGanha = 0;
         this.percurso = "";
     }
 
     // Construtor parametrizado
-    public Corrida(String codigo, String descricao, String data, Integer duracaoMinutos, double distanciaPercorrida, double altimetriaGanha, String percurso) {
+    public Corrida(String codigo, String descricao, LocalDate data, Integer duracaoMinutos, double distanciaPercorrida, double altimetriaGanha, String percurso) {
         super(codigo, descricao, data, duracaoMinutos);
         this.distanciaPercorrida = distanciaPercorrida;
         this.altimetriaGanha = altimetriaGanha;

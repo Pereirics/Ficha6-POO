@@ -128,6 +128,17 @@ public class Utilizador {
         this.actividadesRealizadas = actividadesRealizadas;
     }
 
+    public int numeroAtividades() {
+        return this.actividadesRealizadas.size();
+    }
+    public double calculaCaloriasTotais() {
+        double total = 0;
+        for (Actividade actividade: this.actividadesRealizadas) {
+            total += actividade.calculaValorCaloricoDispendido(this);
+        }
+        return total;
+    }
+
     @Override
     public String toString() {
         return "Utilizador{" +

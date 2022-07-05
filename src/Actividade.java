@@ -7,19 +7,19 @@ public class Actividade {
     // Variáveis de instância
     private String codigo;
     private String descricao;
-    private String data;
+    private LocalDate data;
     private Integer duracaoMinutos;
 
     // Construtor por omissão
     public Actividade() {
         this.codigo = "";
         this.descricao = "";
-        this.data = "";
+        this.data = LocalDate.now();
         this.duracaoMinutos = 0;
     }
 
     // Construtor parametrizado
-    public Actividade(String codigo, String descricao, String data, Integer duracaoMinutos) {
+    public Actividade(String codigo, String descricao, LocalDate data, Integer duracaoMinutos) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.data = data;
@@ -43,7 +43,7 @@ public class Actividade {
         return this.descricao;
     }
 
-    public String getData() {
+    public LocalDate getData() {
         return this.data;
     }
 
@@ -59,7 +59,7 @@ public class Actividade {
         this.descricao = descricao;
     }
 
-    public void setData(String data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -77,7 +77,6 @@ public class Actividade {
         }
         return 0;
     }
-
     @Override
     public String toString() {
         return "Actividade{" +
