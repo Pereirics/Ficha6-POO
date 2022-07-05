@@ -88,21 +88,56 @@ public class Fitness {
     }
 
     public Actividade actividadeMaisExigente() {
-        Map<String, Double> valores = new HashMap<>();
+        double maior = 0;
+        Actividade res = new Actividade();
         for (Utilizador utilizador: this.utilizadores.values()) {
             for (Actividade actividade: utilizador.getActividadesRealizadas()) {
-                if (!valores.containsKey(actividade.getCodigo())) {
-                    valores.put(actividade.getCodigo(), actividade.calculaValorCaloricoDispendido(utilizador));
-                }
-                else {
-                    double valor = valores.get(actividade.getCodigo());
-                    valor += actividade.calculaValorCaloricoDispendido(utilizador);
-                    valores.put(actividade.getCodigo(), valor);
+                if (actividade.calculaValorCaloricoDispendido(utilizador) > maior) {
+                    maior = actividade.calculaValorCaloricoDispendido(utilizador);
+                    res = actividade;
                 }
             }
         }
+        return res;
     }
 
+    public Utilizador utilizadorMaisActivo() {
+        Utilizador res = new Utilizador();
+        double maior = 0;
+        for (Utilizador utilizador: this.utilizadores.values()) {
+            for (Actividade actividade: utilizador.getActividadesRealizadas()) {
+                if (actividade.calculaValorCaloricoDispendido(utilizador) > maior) {
+                    maior = actividade.calculaValorCaloricoDispendido(utilizador);
+                    res = utilizador;
+                }
+            }
+        }
+        return res;
+    }
+
+    public void actualizaDesportoFav() {
+        for (Utilizador utilizador: this.utilizadores.values()) {
+            Map<String, Integer> contador = new HashMap<>();
+            for (Actividade actividade: utilizador.getActividadesRealizadas()) {
+                if (!contador.containsKey(actividade.getCodigo())) {
+                    contador.put(actividade.getCodigo(), 1);
+                }
+                else {
+                    int valor = contador.get(actividade.getCodigo()) + 1;
+                    contador.put(actividade.getCodigo(), valor);
+                }
+            }
+            int maior = 0;
+            String cod = "";
+            for (Map.Entry<String, Integer> entry : contador.entrySet()) {
+                if (entry.getValue() > maior) {
+                    maior = entry.getValue();
+                    cod = entry.getKey();
+                }
+            }
+            utilizador.setDesportoFavorito(cod);
+        }
+    }
     @Override
     public String toString() {
         return "Fitness{" +
