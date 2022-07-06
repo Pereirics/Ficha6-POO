@@ -55,14 +55,17 @@ public class Fitness {
         return this.utilizadores.size();
     }
 
-    public Utilizador getUtilizador(String email) {
-        for (Utilizador utilizador: this.utilizadores.values()) {
-            if (utilizador.getEmail().equals(email)) return utilizador;
+    public Utilizador getUtilizador(String email) throws UtilizadorInexistenteException{
+        if (!this.utilizadores.containsKey(email)) {
+            throw new UtilizadorInexistenteException("Utilizador " + email + " Inexistente");
         }
-        return new Utilizador();
+            return utilizadores.get(email).clone();
     }
 
-    public void adiciona(String email, Actividade act) {
+    public void adiciona(String email, Actividade act) throws UtilizadorInexistenteException{
+        if (!this.utilizadores.containsKey(email)) {
+            throw new UtilizadorInexistenteException("Utilizador " + email + " Inexistente");
+        }
         for (Utilizador utilizador: this.utilizadores.values()) {
             if (utilizador.getEmail().equals(email)) {
                 List<Actividade> nova = utilizador.getActividadesRealizadas();
@@ -81,18 +84,24 @@ public class Fitness {
         return res;
     }
 
-    public void adiciona(String email, Set<Actividade> activs) {
-        for (Utilizador utilizador: this.utilizadores.values()) {
-            if (utilizador.getEmail().equals(email)) {
-                List<Actividade> nova = utilizador.getActividadesRealizadas();
-                nova.addAll(activs);
-                utilizador.setAtividadesRealizadas(nova);
-                break;
-            }
+    public void adiciona(String email, Set<Actividade> activs) throws UtilizadorInexistenteException {
+        if (!this.utilizadores.containsKey(email)) {
+            throw new UtilizadorInexistenteException("Utilizador" + email + " Inexistente");
         }
+            List<Actividade> nova = utilizadores.get(email).getActividadesRealizadas();
+            nova.addAll(activs);
+            utilizadores.get(email).setAtividadesRealizadas(nova);
     }
 
-    public int tempoTotalUtilizador(String email) {
+    public void adicionaUtilizador(String email, Utilizador utilizador) throws UtilizadorExistenteException {
+        if (this.utilizadores.containsKey(email)) {
+            throw new UtilizadorExistenteException("Utilizador " + email + " Existente");
+        }
+        this.utilizadores.put(email, utilizador);
+    }
+
+    public int tempoTotalUtilizador(String email) throws  UtilizadorInexistenteException{
+        if (!this.utilizadores.containsKey(email)) throw new UtilizadorInexistenteException("Utilizador" + email + "Inexistente");
         int total = 0;
         for (Utilizador utilizador: this.utilizadores.values()) {
             if (utilizador.getEmail().equals(email)) {
